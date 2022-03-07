@@ -77,8 +77,6 @@ public class iOSApp {
             Thread.sleep(25000);
 
             driver.navigate().back();
-            //MobileElement el11 = (MobileElement) driver.findElementByXPath("//android.widget.FrameLayout[@content-desc=\"Home\"]/android.widget.FrameLayout/android.widget.ImageView");
-            //el11.click();
 
             //Opens the browser
             MobileElement browser = (MobileElement) driver.findElementByAccessibilityId("Browser");
