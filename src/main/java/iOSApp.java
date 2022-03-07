@@ -6,8 +6,8 @@ import java.net.URL;
 
 public class iOSApp {
 
-    public static String userName = "username"; //Enter your username
-    public static String accessKey = "AccessKey"; //Enter your accesskey
+    String userName = System.getenv("LT_USERNAME") == null ? "Your LT Username" : System.getenv("LT_USERNAME");
+    String accessKey = System.getenv("LT_ACCESS_KEY") == null ? "Your LT AccessKey" : System.getenv("LT_ACCESS_KEY");
 
     public String gridURL = "@beta-hub.lambdatest.com/wd/hub";
 
@@ -34,7 +34,7 @@ public class iOSApp {
             capabilities.setCapability("app", "app_url"); //Enter your app url
             capabilities.setCapability("deviceOrientation", "PORTRAIT");
             capabilities.setCapability("console", true);
-            capabilities.setCapability("network", true);
+            capabilities.setCapability("network", false);
             capabilities.setCapability("visual", true);
             capabilities.setCapability("devicelog", true);
             //capabilities.setCapability("geoLocation", "HK");
