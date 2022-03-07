@@ -47,17 +47,6 @@ public class AndroidApp {
             String hub = "https://" + userName + ":" + accessKey + gridURL;
             AppiumDriver driver = new AppiumDriver(new URL(hub), capabilities);
 
-            /*AndroidElement searchElement = (AndroidElement) new WebDriverWait(driver, 30).until(
-                    ExpectedConditions.elementToBeClickable(MobileBy.AccessibilityId("Search Wikipedia")));
-            searchElement.click();
-            AndroidElement insertTextElement = (AndroidElement) new WebDriverWait(driver, 30).until(
-                    ExpectedConditions.elementToBeClickable(MobileBy.id("org.wikipedia.alpha:id/search_src_text")));
-
-            insertTextElement.sendKeys("LambdaTest");
-            Thread.sleep(5000);
-            List allProductsName = driver.findElementsByClassName("android.widget.TextView");
-            assert (allProductsName.size() > 0);*/
-
             MobileElement color = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/color");
             //Changes color
             color.click();
@@ -80,9 +69,6 @@ public class AndroidApp {
             MobileElement geo = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/geoLocation");
             geo.click();
             Thread.sleep(5000);
-
-            //Takes back
-            //driver.navigate().back();
 
             //takes back to home page
             MobileElement home = (MobileElement) driver.findElementByAccessibilityId("Home");
