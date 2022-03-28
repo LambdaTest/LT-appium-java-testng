@@ -1,37 +1,38 @@
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidElement;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.URL;
+import org.testng.annotations.Test;
 
 public class iOSApp {
 
-    String userName = System.getenv("LT_USERNAME") == null ? "Your LT Username" : System.getenv("LT_USERNAME");
-    String accessKey = System.getenv("LT_ACCESS_KEY") == null ? "Your LT AccessKey" : System.getenv("LT_ACCESS_KEY");
+    String userName = System.getenv("LT_USERNAME") == null ? "username" : System.getenv("LT_USERNAME");
+    String accessKey = System.getenv("LT_ACCESS_KEY") == null ? "accesskey" : System.getenv("LT_ACCESS_KEY");
 
     public String gridURL = "@beta-hub.lambdatest.com/wd/hub";
 
-    String DeviceValue;
-    String versionValue;
-    String PlatformValue;
     AppiumDriver driver;
 
 
+    @Test
     @org.testng.annotations.Parameters(value = {"device", "version", "platform"})
-    public iOSApp(String device, String version, String platform) {
+    public void iOSApp1(String device, String version, String platform) {
         try {
-            DeviceValue = device;
-            versionValue = version;
-            PlatformValue = platform;
             DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setCapability("build","ParallelSample iOS");
+            capabilities.setCapability("build","Proverbial iOS");
             capabilities.setCapability("name",platform+" "+device+" "+version);
             capabilities.setCapability("deviceName", device);
             capabilities.setCapability("platformVersion",version);
             capabilities.setCapability("platformName", platform);
             capabilities.setCapability("isRealMobile", true);
             //AppURL (Create from proverbial.ipa sample in project)
-            capabilities.setCapability("app", "app_url"); //Enter your app url
+            capabilities.setCapability("app", "lt://APP10020211648187346007593"); //Enter your app url
             capabilities.setCapability("deviceOrientation", "PORTRAIT");
             capabilities.setCapability("console", true);
             capabilities.setCapability("network", false);
@@ -87,15 +88,16 @@ public class iOSApp {
             el4.click();
             el4.sendKeys("Lambdatest");
 
-            ((JavascriptExecutor) driver).executeScript("lambda-status=passed");
+            //((JavascriptExecutor) driver).executeScript("lambda-status=passed");
             driver.quit();
 
-
-        } catch (Exception t) {
-            System.out.println();
-            ((JavascriptExecutor) driver).executeScript("lambda-status=failed");
-            driver.quit();
-
+        } catch (Exception e) {
+            e.printStackTrace();
+            try{
+                driver.quit();
+            }catch(Exception e1){
+                e.printStackTrace();
+            }
         }
 
 
