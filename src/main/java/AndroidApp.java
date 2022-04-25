@@ -12,8 +12,10 @@ import java.util.List;
 
 public class AndroidApp {
 
-    String userName = System.getenv("LT_USERNAME") == null ? "shantanuw" : System.getenv("LT_USERNAME");
-    String accessKey = System.getenv("LT_ACCESS_KEY") == null ? "rsS1I3BEWoWcAUJHtfa5TZaLjRV1NTeKmyRVJ8QjtCHhMIK3BW" : System.getenv("LT_ACCESS_KEY");
+    String userName = System.getenv("LT_USERNAME") == null ?
+            "username" : System.getenv("LT_USERNAME"); //Add username here
+    String accessKey = System.getenv("LT_ACCESS_KEY") == null ?
+            "accessKey" : System.getenv("LT_ACCESS_KEY"); //Add accessKey here
 
     public String gridURL = "@beta-hub.lambdatest.com/wd/hub";
 
@@ -31,7 +33,7 @@ public class AndroidApp {
             capabilities.setCapability("platformName", platform);
             capabilities.setCapability("isRealMobile", true);
             //AppURL (Create from Wikipedia.apk sample in project)
-            capabilities.setCapability("app", "lt://APP100202371650862145999377"); //Enter your app url
+            capabilities.setCapability("app", "lt://"); //Enter your app url
             capabilities.setCapability("deviceOrientation", "PORTRAIT");
             capabilities.setCapability("console", true);
             capabilities.setCapability("network", false);
@@ -45,7 +47,7 @@ public class AndroidApp {
             MobileElement color = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/color");
             //Changes color
             color.click();
-            Thread.sleep(2000);
+            Thread.sleep(1000);
             //Back to black color
             color.click();
 

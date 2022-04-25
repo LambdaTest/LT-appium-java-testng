@@ -12,8 +12,10 @@ import org.testng.annotations.Test;
 
 public class iOSApp {
 
-    String userName = System.getenv("LT_USERNAME") == null ? "shantanuw" : System.getenv("LT_USERNAME");
-    String accessKey = System.getenv("LT_ACCESS_KEY") == null ? "rsS1I3BEWoWcAUJHtfa5TZaLjRV1NTeKmyRVJ8QjtCHhMIK3BW" : System.getenv("LT_ACCESS_KEY");
+    String userName = System.getenv("LT_USERNAME") == null ?
+            "username" : System.getenv("LT_USERNAME"); //Add username here
+    String accessKey = System.getenv("LT_ACCESS_KEY") == null ?
+            "accessKey" : System.getenv("LT_ACCESS_KEY"); //Add accessKey here
 
     public String gridURL = "@beta-hub.lambdatest.com/wd/hub";
 
@@ -32,7 +34,7 @@ public class iOSApp {
             capabilities.setCapability("platformName", platform);
             capabilities.setCapability("isRealMobile", true);
             //AppURL (Create from proverbial.ipa sample in project)
-            capabilities.setCapability("app", "lt://APP100202371650863410340867"); //Enter your app url
+            capabilities.setCapability("app", "lt://"); //Enter your app url
             capabilities.setCapability("deviceOrientation", "PORTRAIT");
             capabilities.setCapability("console", true);
             capabilities.setCapability("network", false);
