@@ -11,17 +11,18 @@ curl --location --request POST 'https://manual-api.lambdatest.com/app/upload/rea
 --form 'appFile=@"/path/to/file"'
 ```
 
-### **Step 1: Upload Your Application**
-1. You need to generate Basic Auth (BASE64) Token with your LambdaTest UserName & Access Key [Basic Authentication (Encode Credentials to Base 64) | API Connector](https://mixedanalytics.com/knowledge-base/api-connector-encode-credentials-to-base-64/).
-    1. Enter your “Username:AccessKey” and click on **Base64 Encode**.
-    2. A basic authentication token will be generated. Copy the token.
-2. Use the following cURL command with your basic auth token in cmd/Terminal:
+### **Step-1: Upload your application** 
+
 ```bash
-curl --location --request POST 'https://manual-api.lambdatest.com/app/upload/realDevice'
---header 'Authorization: Basic <ENTER_BASIC_AUTH_TOKEN>'
---form 'name="lambda1"'
---form 'appFile=@"/path/to/file"'
+curl -u "YOUR_LAMBDATEST_USERNAME":"YOUR_LAMBDATEST_ACCESS_KEY" \
+--location --request POST 'https://manual-api.lambdatest.com/app/upload/realDevice' \
+--form 'name="Android_App"' \
+--form 'appFile=@"/Users/macuser/Downloads/proverbial_android.apk"' 
 ```
+> **Note:**
+>
+> - If you do not have any **.apk** or **.ipa** file, you can run your sample tests on LambdaTest by using our sample [Android app](https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_android.apk) or sample [iOS app](https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_ios.ipa).
+> - Response of above cURL will be a **JSON** object containing the `App URL` of the format - <lt://APP123456789123456789> and will be used in the next step.
 
 ### **Step 2: Write Your Automation Script**
 Write your automation script in the client language of your choice from the ones [supported by Appium](https://appium.io/downloads.html). In the sample automation script in Java for the sample app downloaded above. Ensure to update the `app_url`, `username` and `accesskey` in the below code.
