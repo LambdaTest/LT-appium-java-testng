@@ -33,7 +33,6 @@ public class iOSApp {
             capabilities.setCapability("platformVersion",version);
             capabilities.setCapability("platformName", platform);
             capabilities.setCapability("isRealMobile", true);
-            //AppURL (Create from proverbial.ipa sample in project)
             capabilities.setCapability("app", "lt://"); //Enter your app url
             capabilities.setCapability("deviceOrientation", "PORTRAIT");
             capabilities.setCapability("console", true);
@@ -47,26 +46,30 @@ public class iOSApp {
 
             WebDriverWait Wait = new WebDriverWait(driver,30);
 
+            //Changes the color of the text
             Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("color"))).click();
             Thread.sleep(1000);
 
+            //Changes the text to "Proverbial"
             Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Text"))).click();
             Thread.sleep(1000);
 
+            //Toast will be visible
             Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("toast"))).click();
             Thread.sleep(1000);
 
+            //Notification will be visible
             Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("notification"))).click();
             Thread.sleep(4000);
 
-            //Open the geolocation page
+            //Opens the geolocation page
             Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("geoLocation"))).click();
             Thread.sleep(4000);
 
             //Takes back
             driver.navigate().back();
 
-            //Takes to speed test page
+            //Takes to speedtest page
             Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("speedTest"))).click();
             Thread.sleep(4000);
 
