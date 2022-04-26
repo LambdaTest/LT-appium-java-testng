@@ -1,4 +1,4 @@
-# LT_Java_Appium
+# LT-appium-java-testng
 Sample repo to run app automation on real device on LambdaTest.
 
 
