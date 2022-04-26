@@ -45,26 +45,26 @@ public class AndroidApp {
             driver = new AppiumDriver(new URL(hub), capabilities);
 
             MobileElement color = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/color");
-            //Changes color
+            //Changes color to pink
             color.click();
             Thread.sleep(1000);
-            //Back to black color
+            //Back to orginal color
             color.click();
 
             MobileElement text = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/Text");
-            //Changes the text to proverbial
+            //Changes the text to "Proverbial"
             text.click();
 
-            //toast is visible
+            //toast will be visible
             MobileElement toast = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/toast");
             toast.click();
 
-            //notification is visible
+            //notification will be visible
             MobileElement notification = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/notification");
             notification.click();
             Thread.sleep(2000);
 
-            //Open the geolocation page
+            //Opens the geolocation page
             MobileElement geo = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/geoLocation");
             geo.click();
             Thread.sleep(5000);
