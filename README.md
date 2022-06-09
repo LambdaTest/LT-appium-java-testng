@@ -1,34 +1,75 @@
-# LT_Java_Appium
-Sample repo to run app automation on real device on LambdaTest.
+# How to mark test as Passed or Failed in TestNG with Appium on [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=appium-testNG-passfail)
 
+While performing app automation testing with appium on LambdaTest Grid, you may face a scenario where a test that you declared as fail in your local instance may turn out to be completed successfully at LambdaTest. Don't worry though! We understand how imperative it is to flag an app automation test as either "pass" or "fail" depending upon your testing requirement with respect to the validation of expected behaviour. You can refer to sample test repo [here](https://github.com/LambdaTest/LT-appium-java-testng).
 
-**Below is the curl request to upload the app for automation**
+# Steps:
 
-### **Step-1: Upload your application** 
+You can specify a test as passed or failed by Lambda hooks. The following is an example on how to set test result as passed or failed. If the code reaches exception, then it will be marked as failed, else as passed.
+
+```java
+import io.appium.java_client.AppiumDriver;
+import org.testng.annotations.Test;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import io.appium.java_client.MobileElement;
+import java.net.URL;
+
+public class AndroidApp {
+
+    String userName = System.getenv("LT_USERNAME") == null ?
+            "username" : System.getenv("LT_USERNAME"); //Enter your username here
+    String accessKey = System.getenv("LT_ACCESS_KEY") == null ?
+            "accessKey" : System.getenv("LT_ACCESS_KEY"); //Enter your accessKey here
+
+    public String gridURL = "@mobile-hub.lambdatest.com/wd/hub";
+
+    AppiumDriver driver;
+
+    @Test
+    @org.testng.annotations.Parameters(value = {"device", "version", "platform"})
+    public void AndroidApp1() {
+        try {
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+                capabilities.setCapability("build","Enter_your_build_name"); //Enter your build name here
+                capabilities.setCapability("name","Enter_your_test_name"); //Enter your test name here
+                capabilities.setCapability("deviceName", "Galaxy S21 5G");
+                capabilities.setCapability("platformVersion","12");
+                capabilities.setCapability("platformName", "Android");
+                capabilities.setCapability("isRealMobile", true);
+                capabilities.setCapability("app", "lt://"); //Enter your app url here
+
+            String hub = "https://" + userName + ":" + accessKey + gridURL;
+            driver = new AppiumDriver(new URL(hub), capabilities);
+
+            MobileElement color = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/color");
+            color.click();
+            MobileElement text = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/Text");
+            text.click();
+            MobileElement toast = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/toast");
+            toast.click();
+            MobileElement notification = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/notification");
+            notification.click();
+            Thread.sleep(2000);
+
+            //MARKING TEST AS PASSED VIA LAMBDA HOOKS
+            driver.executeScript('lambda-status=passed')
+
+            driver.quit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            
+            //MARKING TEST AS FAILED VIA LAMBDA HOOKS            
+            driver.executeScript('lambda-status=failed')
+            driver.quit();
+            }
+        }
+     }
+```
+## Run your test
 
 ```bash
-curl -u "YOUR_LAMBDATEST_USERNAME":"YOUR_LAMBDATEST_ACCESS_KEY" \
---location --request POST 'https://manual-api.lambdatest.com/app/upload/realDevice' \
---form 'name="Android_App"' \
---form 'appFile=@"/Users/macuser/Downloads/proverbial_android.apk"' 
-```
-> **Note:**
->
-> - If you do not have any **.apk** or **.ipa** file, you can run your sample tests on LambdaTest by using our sample [Android app](https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_android.apk) or sample [iOS app](https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_ios.ipa).
-> - Response of above cURL will be a **JSON** object containing the `App URL` of the format - <lt://APP123456789123456789> and will be used in the next step.
-
-### **Step 2: Write Your Automation Script**
-Write your automation script in the client language of your choice from the ones [supported by Appium](https://appium.io/downloads.html). In the sample automation script in Java for the sample app downloaded above. Ensure to update the `app_url`, `username` and `accesskey` in the below code.
-
-### **Step 3: Execute Your Test Case**
-Debug and run your code. Run iOSApp.java or AndroidApp.java in your editor.
-```
 mvn clean install -DsuiteXmlFile=src/test/java/Android.xml
 ```
-```
-mvn clean install -DsuiteXmlFile=src/test/java/IOS.xml
-```
+# Links:
 
-
-### **Step 4: View Test Execution**
-Once you have run your tests, you can view the test execution along with logs. You will be able to see the test cases passing or failing. You can view the same at [LambdaTest Automation](https://accounts.lambdatest.com/login).
+[LambdaTest Community](http://community.lambdatest.com/)
