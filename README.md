@@ -1,4 +1,4 @@
-# How to mark test as Passed or Failed in TestNG with Appium on [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=appium-testNG-passfail)
+# How to mark test as Passed or Failed in TestNG with Appium on [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=appium-testNG-geoLocation)
 
 While performing app automation testing with appium on LambdaTest Grid, you may face a scenario where a test that you declared as fail in your local instance may turn out to be completed successfully at LambdaTest. Don't worry though! We understand how imperative it is to flag an app automation test as either "pass" or "fail" depending upon your testing requirement with respect to the validation of expected behaviour. You can refer to sample test repo [here](https://github.com/LambdaTest/LT-appium-java-testng).
 
@@ -37,6 +37,9 @@ public class AndroidApp {
                 capabilities.setCapability("isRealMobile", true);
                 capabilities.setCapability("app", "lt://"); //Enter your app url here
 
+                //ADD GEOLOCATION BASED ON COUNTRY CODE
+                capabilities.setCapability("geoLocation", "fr");
+
             String hub = "https://" + userName + ":" + accessKey + gridURL;
             driver = new AppiumDriver(new URL(hub), capabilities);
 
@@ -50,16 +53,10 @@ public class AndroidApp {
             notification.click();
             Thread.sleep(2000);
 
-            //MARKING TEST AS PASSED VIA LAMBDA HOOKS
-            driver.executeScript('lambda-status=passed')
-
             driver.quit();
 
         } catch (Exception e) {
             e.printStackTrace();
-            
-            //MARKING TEST AS FAILED VIA LAMBDA HOOKS            
-            driver.executeScript('lambda-status=failed')
             driver.quit();
             }
         }
