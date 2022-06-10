@@ -39,7 +39,10 @@ public class iOSApp {
             capabilities.setCapability("network", false);
             capabilities.setCapability("visual", true);
             capabilities.setCapability("devicelog", true);
-            //capabilities.setCapability("geoLocation", "HK");
+
+            // ADD THE APP URL OF OTHER APPS THAT YOU'D LIKE TO INSTALL ON THE SAME DEVICE
+
+            capabilities.setCapability("otherApps", "[\"APP_ID\", \"APP_ID\"]");   // ENTER THE OTHER APP URLs HERE IN AN ARRAY FORMAT
 
             String hub = "https://" + userName + ":" + accessKey + gridURL;
             driver = new AppiumDriver(new URL(hub), capabilities);
@@ -61,30 +64,6 @@ public class iOSApp {
             //Notification will be visible
             Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("notification"))).click();
             Thread.sleep(4000);
-
-            //Opens the geolocation page
-            Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("geoLocation"))).click();
-            Thread.sleep(4000);
-
-            //Takes back
-            driver.navigate().back();
-
-            //Takes to speedtest page
-            Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("speedTest"))).click();
-            Thread.sleep(4000);
-
-            driver.navigate().back();
-
-            //Opens the browser
-            Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Browser"))).click();
-            Thread.sleep(1000);
-
-            MobileElement url = (MobileElement) driver.findElementByAccessibilityId("url");
-            url.click();
-            url.sendKeys("https://www.lambdatest.com");
-
-            Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("find"))).click();
-            Thread.sleep(1000);
 
             driver.quit();
 

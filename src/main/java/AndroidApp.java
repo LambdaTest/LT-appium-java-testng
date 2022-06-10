@@ -32,14 +32,16 @@ public class AndroidApp {
             capabilities.setCapability("platformVersion",version);
             capabilities.setCapability("platformName", platform);
             capabilities.setCapability("isRealMobile", true);
-            //AppURL (Create from Wikipedia.apk sample in project)
             capabilities.setCapability("app", "lt://"); //Enter your app url
             capabilities.setCapability("deviceOrientation", "PORTRAIT");
             capabilities.setCapability("console", true);
             capabilities.setCapability("network", false);
             capabilities.setCapability("visual", true);
             capabilities.setCapability("devicelog", true);
-            //capabilities.setCapability("geoLocation", "HK");
+
+            // ADD THE APP URL OF OTHER APPS THAT YOU'D LIKE TO INSTALL ON THE SAME DEVICE
+
+            capabilities.setCapability("otherApps", "[\"APP_ID\", \"APP_ID\"]");   // ENTER THE OTHER APP URLs HERE IN AN ARRAY FORMAT
 
             String hub = "https://" + userName + ":" + accessKey + gridURL;
             driver = new AppiumDriver(new URL(hub), capabilities);
@@ -72,24 +74,6 @@ public class AndroidApp {
             //takes back to home page
             MobileElement home = (MobileElement) driver.findElementByAccessibilityId("Home");
             home.click();
-
-            //Takes to speed test page
-            MobileElement speedtest = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/speedTest");
-            speedtest.click();
-            Thread.sleep(5000);
-
-            MobileElement Home = (MobileElement) driver.findElementByAccessibilityId("Home");
-            Home.click();
-
-            //Opens the browser
-            MobileElement browser = (MobileElement) driver.findElementByAccessibilityId("Browser");
-            browser.click();
-
-            MobileElement url = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/url");
-            url.sendKeys("https://www.lambdatest.com");
-
-            MobileElement find = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/find");
-            find.click();
 
             driver.quit();
 
