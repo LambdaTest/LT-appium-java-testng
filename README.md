@@ -4,7 +4,7 @@ While performing app automation testing with appium on LambdaTest Grid, you may 
 
 # Steps:
 
-The following is an example on how to set geoLocation in the capabilities.
+The following is an example on how to handle permissions in the capabilities in the automation script.
 
 ```java
 import io.appium.java_client.AppiumDriver;
