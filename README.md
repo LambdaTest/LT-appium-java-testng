@@ -1,6 +1,6 @@
-# How to change IP geographic location in TestNG with Appium on [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=appium-testNG-geoLocation)
+# How to handle permission pop-ups in TestNG with Appium on [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=appium-testNG-permissions)
 
-While performing app automation testing with appium on LambdaTest Grid, you may face a scenario where you would like to simulate location of a specific country. You can easily do that by using the lambdatest capability "GeoLocation" and refer the 2-letter country code in the automation script. You can refer to sample test repo [here](https://github.com/LambdaTest/LT-appium-java-testng).
+While performing app automation testing with appium on LambdaTest Grid, you may face a scenario where you would like to automatically handle permission pop-ups. You may choose to either accept all permission pop-ups or dismiss all of them. You can handle the case as mentioned below separately for Android or iOS apps. You can refer to sample test repo [here](https://github.com/LambdaTest/LT-appium-java-testng).
 
 # Steps:
 
@@ -37,8 +37,14 @@ public class AndroidApp {
                 capabilities.setCapability("isRealMobile", true);
                 capabilities.setCapability("app", "lt://"); //Enter your app url here
 
-                //ADD GEOLOCATION BASED ON COUNTRY CODE
-                capabilities.setCapability("geoLocation", "fr");
+                //GRANT PERMISSIONS FOR ANDROID
+                capabilities.setCapability("autoGrantPermissions", true);
+                
+                //ACCEPT ALERTS FOR IOS
+                capabilities.setCapability("autoDismissAlerts", true);
+                
+                //DISMISS ALERTS FOR IOS
+                capabilities.setCapability("autoAcceptAlerts", true);
 
             String hub = "https://" + userName + ":" + accessKey + gridURL;
             driver = new AppiumDriver(new URL(hub), capabilities);
@@ -116,4 +122,4 @@ To stay updated with the latest features and product add-ons, visit [Changelog](
 ## We are here to help you :headphones:
 
 * Got a query? we are available 24x7 to help. [Contact Us](support@lambdatest.com)
-* For more info, visit - [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-python)
+* For more info, visit - [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=appium-testNG-permissions)
