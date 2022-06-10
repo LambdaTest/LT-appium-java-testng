@@ -40,6 +40,7 @@ public class AndroidApp {
             capabilities.setCapability("network", false);
             capabilities.setCapability("visual", true);
             capabilities.setCapability("devicelog", true);
+            capabilities.setCapability("autoGrantPermissions", true);
             //capabilities.setCapability("geoLocation", "HK");
 
             String hub = "https://" + userName + ":" + accessKey + gridURL;
