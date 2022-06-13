@@ -15,9 +15,9 @@ public class AndroidApp {
     String userName = System.getenv("LT_USERNAME") == null ?
             "username" : System.getenv("LT_USERNAME"); //Add username here
     String accessKey = System.getenv("LT_ACCESS_KEY") == null ?
-            "accessKey" : System.getenv("LT_ACCESS_KEY"); //Add accessKey here
+            "accesskey" : System.getenv("LT_ACCESS_KEY"); //Add accessKey here
 
-    public String gridURL = "@beta-hub.lambdatest.com/wd/hub";
+    public String gridURL = "@mobile-hub.lambdatest.com/wd/hub";
 
     AppiumDriver driver;
 
@@ -63,33 +63,6 @@ public class AndroidApp {
             MobileElement notification = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/notification");
             notification.click();
             Thread.sleep(2000);
-
-            //Opens the geolocation page
-            MobileElement geo = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/geoLocation");
-            geo.click();
-            Thread.sleep(5000);
-
-            //takes back to home page
-            MobileElement home = (MobileElement) driver.findElementByAccessibilityId("Home");
-            home.click();
-
-            //Takes to speed test page
-            MobileElement speedtest = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/speedTest");
-            speedtest.click();
-            Thread.sleep(5000);
-
-            MobileElement Home = (MobileElement) driver.findElementByAccessibilityId("Home");
-            Home.click();
-
-            //Opens the browser
-            MobileElement browser = (MobileElement) driver.findElementByAccessibilityId("Browser");
-            browser.click();
-
-            MobileElement url = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/url");
-            url.sendKeys("https://www.lambdatest.com");
-
-            MobileElement find = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/find");
-            find.click();
 
             driver.quit();
 
