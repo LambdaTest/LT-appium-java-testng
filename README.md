@@ -1,42 +1,89 @@
-# How to run Parallel Tests in Real Devices on [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=appium-java-testNG-parallelTest) using Appium in the Java TestNG Framework
+# How to close/open the app during a session in Real Devices on [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-java-testNG-openApp) using Appium in the Java TestNG Framework
 
-While performing app automation testing with appium on LambdaTest Grid,
-you might face a scenario where you want to run your test on multiple devices to see the edge cases. 
-If you choose to run them on a single device, it get's time consuming. 
-Alternatively, you can run your tests in Parallel which means that your tests will run on multiple devices simultaneously!
-This makes sure that you're using the time of running one test to run multiple.
+While performing automation testing with Appium on LambdaTest Grid, you might face a scenario where you'd want to close the application or open the application during a test run.
+This can be essential sometimes to see how your application behaves in different scenarios. Let's see how we can leverage Appium's commands to achieve it on LambdaTest.
 
-# Steps:
+**Tip:**
 
-You can make this change in the ```Android.xml``` and ```iOS.xml```:
+- If you do not have any **.apk** or **.ipa** file, you can run your sample tests on LambdaTest by using our sample :link: [Android app](https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_android.apk) or sample :link: [iOS app](https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_ios.ipa).
+- Response of above cURL will be a **JSON** object containing the `App URL` of the format - <lt://APP123456789123456789> and will be used in the next step.
+- Alternatively you can also use the `Custom ID` that you defined in your own words.
 
-Below is the ```Android.xml``` example shown, feel free to add more Devices based on your plan.
+## Run Your First Test
+
+Once you are done with the above-mentioned steps, you can initiate your first Java test on LambdaTest.
+
+### Configuring Your Test Capabilities
+
+You can update your custom capabilities in test scripts. In this sample project, we are passing platform name, platform version, device name and app url (generated earlier) along with other capabilities like build name and test name via capabilities object. The capabilities object in the sample code are defined as:
+
+<Tabs className="docs__val">
+
+<TabItem value="ios-config" label="iOS" default>
 
 ```
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="100" name="Mobile" parallel="tests">
+public void AndroidApp1(String device, String version, String platform) {
+        try {
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("build","Java TestNG Android");
+            capabilities.setCapability("name",platform+" "+device+" "+version);
+            capabilities.setCapability("deviceName", device);
+            capabilities.setCapability("platformVersion",version);
+            capabilities.setCapability("platformName", platform);
+            capabilities.setCapability("isRealMobile", true);
+            capabilities.setCapability("app", "lt://"); //Enter your app url
+            capabilities.setCapability("deviceOrientation", "PORTRAIT");
+            capabilities.setCapability("console", true);
+            capabilities.setCapability("network", false);
+            capabilities.setCapability("visual", true);
+            capabilities.setCapability("devicelog", true);
 
+            String hub = "https://" + userName + ":" + accessKey + gridURL;
+            driver = new AppiumDriver(new URL(hub), capabilities);
 
-    <test name="AndroidAppTest 1">
-        <parameter name="version" value="10"/>
-        <parameter name="platform" value="Android"/>
-        <parameter name="device" value="Pixel 3 XL"/>
-        <classes>
-            <class name="AndroidApp"/>
-        </classes>
-    </test>
+            MobileElement color = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/color");
+            //Changes color to pink
+            color.click();
+            Thread.sleep(1000);
+            //Back to orginal color
+            color.click();
 
-    <test name="AndroidAppTest 2">
-        <parameter name="version" value="10"/>
-        <parameter name="platform" value="Android"/>
-        <parameter name="device" value="Pixel 4"/>
-        <classes>
-            <class name="AndroidApp"/>
-        </classes>
-    </test>
-</suite>
+            MobileElement text = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/Text");
+            //Changes the text to "Proverbial"
+            text.click();
+
+            //Close the application
+            driver.closeApp();
+
+            //Open the application
+            driver.launchApp();
+
+            //toast will be visible
+            MobileElement toast = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/toast");
+            toast.click();
+
+            //notification will be visible
+            MobileElement notification = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/notification");
+            notification.click();
+            Thread.sleep(2000);
+
+            driver.quit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            try{
+                driver.quit();
+            }catch(Exception e1){
+                e.printStackTrace();
+            }
+        }
+    }
+}
 ```
+
+For more information on the Appium Commands used here, head over to:
+* [Launch App | Appium](https://appium.io/docs/en/commands/device/app/launch-app/)
+* [Close App | Appium](https://appium.io/docs/en/commands/device/app/close-app/)
 
 ### **Step 3: Execute Your Test Case**
 Debug and run your code. Run iOSApp.java or AndroidApp.java in your editor.
@@ -47,9 +94,9 @@ mvn clean install -DsuiteXmlFile=src/test/java/Android.xml
 mvn clean install -DsuiteXmlFile=src/test/java/IOS.xml
 ```
 
-Info: Your test results would be displayed on the test console (or command-line interface if you are using terminal/cmd) and on the 🔗 LambdaTest App Automation Dashboard.
+</TabItem>
 
-
+</Tabs>
 
 Your test results would be displayed on the test console (or command-line interface if you are using terminal/cmd) and on the [LambdaTest App Automation Dashboard](https://appautomation.lambdatest.com/build).
 
@@ -60,13 +107,13 @@ Your test results would be displayed on the test console (or command-line interf
 - [How to integrate LambdaTest with CI/CD](https://www.lambdatest.com/support/docs/integrations-with-ci-cd-tools/)
 
 ## Documentation & Resources :books:
-      
+
 Visit the following links to learn more about LambdaTest's features, setup and tutorials around test automation, mobile app testing, responsive testing, and manual testing.
 
 * [LambdaTest Documentation](https://www.lambdatest.com/support/docs/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-python)
 * [LambdaTest Blog](https://www.lambdatest.com/blog/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-python)
 * [LambdaTest Learning Hub](https://www.lambdatest.com/learning-hub/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-python)
-* [LambdaTest Community](http://community.lambdatest.com/)    
+* [LambdaTest Community](http://community.lambdatest.com/)
 
 ## LambdaTest Community :busts_in_silhouette:
 
@@ -74,11 +121,11 @@ The [LambdaTest Community](https://community.lambdatest.com/) allows people to i
 
 ## What's New At LambdaTest ❓
 
-To stay updated with the latest features and product add-ons, visit [Changelog](https://changelog.lambdatest.com/) 
-      
+To stay updated with the latest features and product add-ons, visit [Changelog](https://changelog.lambdatest.com/)
+
 ## About LambdaTest
 
-[LambdaTest](https://www.lambdatest.com) is a leading test execution and orchestration platform that is fast, reliable, scalable, and secure. It allows users to run both manual and automated testing of web and mobile apps across 3000+ different browsers, operating systems, and real device combinations. Using LambdaTest, businesses can ensure quicker developer feedback and hence achieve faster go to market. Over 500 enterprises and 1 Million + users across 130+ countries rely on LambdaTest for their testing needs.    
+[LambdaTest](https://www.lambdatest.com) is a leading test execution and orchestration platform that is fast, reliable, scalable, and secure. It allows users to run both manual and automated testing of web and mobile apps across 3000+ different browsers, operating systems, and real device combinations. Using LambdaTest, businesses can ensure quicker developer feedback and hence achieve faster go to market. Over 500 enterprises and 1 Million + users across 130+ countries rely on LambdaTest for their testing needs.
 
 ### Features
 
@@ -94,10 +141,10 @@ To stay updated with the latest features and product add-ons, visit [Changelog](
 * Online Accessibility Testing across 3000+ desktop and mobile browsers, browser versions, and operating systems.
 * Geolocation testing of web and mobile apps across 53+ countries.
 * LT Browser - for responsive testing across 50+ pre-installed mobile, tablets, desktop, and laptop viewports
-    
+
 [<img height="53" width="200" src="https://user-images.githubusercontent.com/70570645/171866795-52c11b49-0728-4229-b073-4b704209ddde.png">](https://accounts.lambdatest.com/register)
-      
+
 ## We are here to help you :headphones:
 
 * Got a query? we are available 24x7 to help. [Contact Us](support@lambdatest.com)
-* For more info, visit - [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=appium-java-testNG-parallelTest)
+* For more info, visit - [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-java-testNG-openApp)

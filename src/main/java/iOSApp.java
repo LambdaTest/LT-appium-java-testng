@@ -53,6 +53,12 @@ public class iOSApp {
             Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Text"))).click();
             Thread.sleep(1000);
 
+            //Close the application
+            driver.closeApp();
+
+            //Open the application
+            driver.launchApp();
+
             //Toast will be visible
             Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("toast"))).click();
             Thread.sleep(1000);

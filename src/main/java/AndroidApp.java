@@ -32,14 +32,12 @@ public class AndroidApp {
             capabilities.setCapability("platformVersion",version);
             capabilities.setCapability("platformName", platform);
             capabilities.setCapability("isRealMobile", true);
-            //AppURL (Create from Wikipedia.apk sample in project)
             capabilities.setCapability("app", "lt://"); //Enter your app url
             capabilities.setCapability("deviceOrientation", "PORTRAIT");
             capabilities.setCapability("console", true);
             capabilities.setCapability("network", false);
             capabilities.setCapability("visual", true);
             capabilities.setCapability("devicelog", true);
-            //capabilities.setCapability("geoLocation", "HK");
 
             String hub = "https://" + userName + ":" + accessKey + gridURL;
             driver = new AppiumDriver(new URL(hub), capabilities);
@@ -54,6 +52,12 @@ public class AndroidApp {
             MobileElement text = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/Text");
             //Changes the text to "Proverbial"
             text.click();
+
+            //Close the application
+            driver.closeApp();
+
+            //Open the application
+            driver.launchApp();
 
             //toast will be visible
             MobileElement toast = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/toast");
