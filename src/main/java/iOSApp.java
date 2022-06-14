@@ -17,7 +17,7 @@ public class iOSApp {
     String accessKey = System.getenv("LT_ACCESS_KEY") == null ?
             "accessKey" : System.getenv("LT_ACCESS_KEY"); //Add accessKey here
 
-    public String gridURL = "@beta-hub.lambdatest.com/wd/hub";
+    public String gridURL = "@mobile-hub.lambdatest.com/wd/hub";
 
     AppiumDriver driver;
 
@@ -33,7 +33,7 @@ public class iOSApp {
             capabilities.setCapability("platformVersion",version);
             capabilities.setCapability("platformName", platform);
             capabilities.setCapability("isRealMobile", true);
-            capabilities.setCapability("app", "lt://"); //Enter your app url
+            capabilities.setCapability("app", "APP_URL"); //Enter your app url
             capabilities.setCapability("deviceOrientation", "PORTRAIT");
             capabilities.setCapability("console", true);
             capabilities.setCapability("network", false);
