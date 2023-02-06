@@ -13,9 +13,9 @@ import java.util.List;
 public class AndroidApp {
 
     String userName = System.getenv("LT_USERNAME") == null ?
-            "username" : System.getenv("LT_USERNAME"); //Add username here
+            "princev" : System.getenv("LT_USERNAME"); //Add username here
     String accessKey = System.getenv("LT_ACCESS_KEY") == null ?
-            "accessKey" : System.getenv("LT_ACCESS_KEY"); //Add accessKey here
+            "BTxtkGRLs3Xa6YRG92aTy2z3hyREhVRDNIwVYY5qH3WjEamJ1B" : System.getenv("LT_ACCESS_KEY"); //Add accessKey here
 
     public String gridURL = "@mobile-hub.lambdatest.com/wd/hub";
 
@@ -26,70 +26,49 @@ public class AndroidApp {
     public void AndroidApp1(String device, String version, String platform) {
         try {
             DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setCapability("build","Java TestNG Android");
+            capabilities.setCapability("build","Demo for Context Switch");
             capabilities.setCapability("name",platform+" "+device+" "+version);
             capabilities.setCapability("deviceName", device);
             capabilities.setCapability("platformVersion",version);
             capabilities.setCapability("platformName", platform);
-            capabilities.setCapability("isRealMobile", true);
-            //AppURL (Create from Wikipedia.apk sample in project)
-            capabilities.setCapability("app", "APP_URL"); //Enter your app url
+            capabilities.setCapability("isRealMobile", true); 
+            capabilities.setCapability("app", "lt://APP10160202521674154775515472"); //Enter your app url
             capabilities.setCapability("deviceOrientation", "PORTRAIT");
             capabilities.setCapability("console", true);
             capabilities.setCapability("network", false);
             capabilities.setCapability("visual", true);
             capabilities.setCapability("devicelog", true);
-            //capabilities.setCapability("geoLocation", "HK");
+            capabilities.setCapability("autoGrantPermissions",true);
+            capabilities.setCapability("automationName","UiAutomator2");
 
             String hub = "https://" + userName + ":" + accessKey + gridURL;
             driver = new AppiumDriver(new URL(hub), capabilities);
 
-            MobileElement color = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/color");
-            //Changes color to pink
+            Thread.sleep(7000);
+
+            MobileElement color = (MobileElement) driver.findElementById("webpage");
+            
             color.click();
-            Thread.sleep(1000);
-            //Back to orginal color
-            color.click();
-
-            MobileElement text = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/Text");
-            //Changes the text to "Proverbial"
-            text.click();
-
-            //toast will be visible
-            MobileElement toast = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/toast");
-            toast.click();
-
-            //notification will be visible
-            MobileElement notification = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/notification");
-            notification.click();
             Thread.sleep(2000);
 
-            //Opens the geolocation page
-            MobileElement geo = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/geoLocation");
-            geo.click();
-            Thread.sleep(5000);
+            driver.findElementById("websiteName").sendKeys("https://mfml.in/api/getInfo");
+            Thread.sleep(2000);
+            driver.findElementById("findButton").click();
+            
+            System.out.println(driver.getContextHandles());
+            driver.context("WEBVIEW_com.example.QAapp");
 
-            //takes back to home page
-            MobileElement home = (MobileElement) driver.findElementByAccessibilityId("Home");
-            home.click();
+            Thread.sleep(2000);
 
-            //Takes to speed test page
-            MobileElement speedtest = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/speedTest");
-            speedtest.click();
-            Thread.sleep(5000);
+            driver.findElementById("resolution").click();
+            Thread.sleep(2000);
 
-            MobileElement Home = (MobileElement) driver.findElementByAccessibilityId("Home");
-            Home.click();
+            driver.context("NATIVE_APP");
+            Thread.sleep(2000);
 
-            //Opens the browser
-            MobileElement browser = (MobileElement) driver.findElementByAccessibilityId("Browser");
-            browser.click();
-
-            MobileElement url = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/url");
-            url.sendKeys("https://www.lambdatest.com");
-
-            MobileElement find = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/find");
-            find.click();
+            driver.findElementById("websiteName").sendKeys("https://www.google.com");
+            Thread.sleep(2000);
+            driver.findElementById("findButton").click();
 
             driver.quit();
 
