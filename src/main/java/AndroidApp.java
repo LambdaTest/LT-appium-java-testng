@@ -33,7 +33,7 @@ public class AndroidApp {
             capabilities.setCapability("platformName", platform);
             capabilities.setCapability("isRealMobile", true);
             //AppURL (Create from Wikipedia.apk sample in project)
-            capabilities.setCapability("app", "APP_URL"); //Enter your app url
+            capabilities.setCapability("app", "lt://proverbial-android"); //Enter your app url
             capabilities.setCapability("deviceOrientation", "PORTRAIT");
             capabilities.setCapability("console", true);
             capabilities.setCapability("network", false);
