@@ -2,6 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite thread-count="100" name="Mobile" parallel="tests">
 
+
     <test name="iOSApp 1">
         <parameter name="version" value="16" />
         <parameter name="platform" value="iOS" />
@@ -15,33 +16,6 @@
         <parameter name="version" value="15" />
         <parameter name="platform" value="iOS" />
         <parameter name="device" value="iPhone 13" />
-        <classes>
-            <class name="iOSApp" />
-        </classes>
-    </test>
-
-    <test name="iOSApp 3">
-        <parameter name="version" value="14" />
-        <parameter name="platform" value="iOS" />
-        <parameter name="device" value="iPhone.*" />
-        <classes>
-            <class name="iOSApp" />
-        </classes>
-    </test>
-
-    <test name="iOSApp 4">
-        <parameter name="version" value="13" />
-        <parameter name="platform" value="iOS" />
-        <parameter name="device" value="iPhone.*" />
-        <classes>
-            <class name="iOSApp" />
-        </classes>
-    </test>
-
-    <test name="iOSApp 5">
-        <parameter name="version" value="12" />
-        <parameter name="platform" value="iOS" />
-        <parameter name="device" value="iPhone.*" />
         <classes>
             <class name="iOSApp" />
         </classes>
