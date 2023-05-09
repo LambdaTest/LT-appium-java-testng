@@ -4,18 +4,45 @@
 
 
     <test name="AndroidAppTest 1">
-        <parameter name="version" value="11" />
+        <parameter name="version" value="13" />
         <parameter name="platform" value="Android" />
-        <parameter name="device" value="Galaxy S21 Ultra 5G" />
+        <parameter name="device" value=".*" />
         <classes>
             <class name="AndroidApp" />
         </classes>
     </test>
 
     <test name="AndroidAppTest 2">
+        <parameter name="version" value="12" />
+        <parameter name="platform" value="Android" />
+        <parameter name="device" value=".*" />
+        <classes>
+            <class name="AndroidApp" />
+        </classes>
+    </test>
+
+    <test name="AndroidAppTest 3">
         <parameter name="version" value="11" />
         <parameter name="platform" value="Android" />
-        <parameter name="device" value="Galaxy S21" />
+        <parameter name="device" value=".*" />
+        <classes>
+            <class name="AndroidApp" />
+        </classes>
+    </test>
+
+    <test name="AndroidAppTest 4">
+        <parameter name="version" value="10" />
+        <parameter name="platform" value="Android" />
+        <parameter name="device" value=".*" />
+        <classes>
+            <class name="AndroidApp" />
+        </classes>
+    </test>
+
+    <test name="AndroidAppTest 5">
+        <parameter name="version" value="9" />
+        <parameter name="platform" value="Android" />
+        <parameter name="device" value=".*" />
         <classes>
             <class name="AndroidApp" />
         </classes>
