@@ -6,7 +6,7 @@
     <test name="AndroidAppTest 1">
         <parameter name="version" value="13" />
         <parameter name="platform" value="Android" />
-        <parameter name="device" value="Pixel 7 Pro" />
+        <parameter name="device" value="Galaxy S23 Ultra" />
         <classes>
             <class name="AndroidApp" />
         </classes>
