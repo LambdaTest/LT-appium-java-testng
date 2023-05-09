@@ -3,9 +3,9 @@
 <suite thread-count="100" name="Mobile" parallel="tests">
 
     <test name="AndroidAppTest 1">
-        <parameter name="version" value="13" />
+        <parameter name="version" value="11" />
         <parameter name="platform" value="Android" />
-        <parameter name="device" value="Galaxy S23 Ultra" />
+        <parameter name="device" value="Galaxy Note20 Ultra 5G" />
         <classes>
             <class name="AndroidApp" />
         </classes>
