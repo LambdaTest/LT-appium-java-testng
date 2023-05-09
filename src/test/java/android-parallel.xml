@@ -24,7 +24,7 @@
     <test name="AndroidAppTest 3">
         <parameter name="version" value="11" />
         <parameter name="platform" value="Android" />
-        <parameter name="device" value="Galaxy..*" />
+        <parameter name="device" value="Galaxy.*" />
         <classes>
             <class name="AndroidApp" />
         </classes>
@@ -33,7 +33,7 @@
     <test name="AndroidAppTest 4">
         <parameter name="version" value="10" />
         <parameter name="platform" value="Android" />
-        <parameter name="device" value="Galaxy..*" />
+        <parameter name="device" value="Galaxy.*" />
         <classes>
             <class name="AndroidApp" />
         </classes>
@@ -42,7 +42,7 @@
     <test name="AndroidAppTest 5">
         <parameter name="version" value="9" />
         <parameter name="platform" value="Android" />
-        <parameter name="device" value="Galaxy..*" />
+        <parameter name="device" value="Galaxy.*" />
         <classes>
             <class name="AndroidApp" />
         </classes>
