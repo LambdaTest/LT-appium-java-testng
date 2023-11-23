@@ -3,20 +3,20 @@
 <suite thread-count="100" name="Mobile" parallel="tests">
 
     <test name="iOSApp 1">
-        <parameter name="version" value="16" />
-        <parameter name="platform" value="iOS" />
-        <parameter name="device" value="iPhone 14" />
+        <parameter name="version" value="16"/>
+        <parameter name="platform" value="iOS"/>
+        <parameter name="device" value="iPhone.*"/>
         <classes>
-            <class name="iOSApp" />
+            <class name="iOSApp"/>
         </classes>
     </test>
 
     <test name="iOSApp 2">
-        <parameter name="version" value="15" />
-        <parameter name="platform" value="iOS" />
-        <parameter name="device" value="iPhone 13" />
+        <parameter name="version" value="15"/>
+        <parameter name="platform" value="iOS"/>
+        <parameter name="device" value="iPhone.*"/>
         <classes>
-            <class name="iOSApp" />
+            <class name="iOSApp"/>
         </classes>
     </test>
 </suite>

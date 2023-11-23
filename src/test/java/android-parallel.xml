@@ -5,7 +5,7 @@
     <test name="AndroidAppTest 1">
         <parameter name="version" value="11" />
         <parameter name="platform" value="Android" />
-        <parameter name="device" value="Galaxy Note20 Ultra 5G" />
+        <parameter name="device" value="Galaxy.*" />
         <classes>
             <class name="AndroidApp" />
         </classes>
@@ -14,7 +14,7 @@
     <test name="AndroidAppTest 2">
         <parameter name="version" value="12" />
         <parameter name="platform" value="Android" />
-        <parameter name="device" value="Galaxy S22 5G" />
+        <parameter name="device" value="Galaxy.*" />
         <classes>
             <class name="AndroidApp" />
         </classes>
