@@ -70,29 +70,19 @@ public class iOSApp {
             //Takes to speedtest page
             Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("speedTest"))).click();
             Thread.sleep(4000);
-
             driver.navigate().back();
 
             //Opens the browser
             Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Browser"))).click();
             Thread.sleep(1000);
-
             MobileElement url = (MobileElement) driver.findElementByAccessibilityId("url");
             url.click();
             url.sendKeys("https://www.lambdatest.com");
-
             Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("find"))).click();
             Thread.sleep(1000);
-
             driver.quit();
-
         } catch (Exception e) {
             e.printStackTrace();
-            try {
-                driver.quit();
-            } catch (Exception e1) {
-                e.printStackTrace();
-            }
         }
 
     }

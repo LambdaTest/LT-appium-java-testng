@@ -87,16 +87,9 @@ public class AndroidApp {
 
             MobileElement find = (MobileElement) driver.findElementById("com.lambdatest.proverbial:id/find");
             find.click();
-
             driver.quit();
-
         } catch (Exception e) {
             e.printStackTrace();
-            try {
-                driver.quit();
-            } catch (Exception e1) {
-                e.printStackTrace();
-            }
         }
 
     }
