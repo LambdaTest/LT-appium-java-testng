@@ -4,11 +4,11 @@
 
 
     <test name="AndroidAppTest 1">
-        <parameter name="version" value="11" />
-        <parameter name="platform" value="Android" />
-        <parameter name="device" value="Galaxy.*" />
+        <parameter name="version" value="11"/>
+        <parameter name="platform" value="Android"/>
+        <parameter name="device" value="Galaxy.*"/>
         <classes>
-            <class name="AndroidApp" />
+            <class name="AndroidApp"/>
         </classes>
     </test>
 

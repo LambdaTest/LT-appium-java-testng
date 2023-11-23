@@ -3,20 +3,20 @@
 <suite thread-count="100" name="Mobile" parallel="tests">
 
     <test name="AndroidAppTest 1">
-        <parameter name="version" value="11" />
-        <parameter name="platform" value="Android" />
-        <parameter name="device" value="Galaxy.*" />
+        <parameter name="version" value="11"/>
+        <parameter name="platform" value="Android"/>
+        <parameter name="device" value="Galaxy.*"/>
         <classes>
-            <class name="AndroidApp" />
+            <class name="AndroidApp"/>
         </classes>
     </test>
 
     <test name="AndroidAppTest 2">
-        <parameter name="version" value="12" />
-        <parameter name="platform" value="Android" />
-        <parameter name="device" value="Galaxy.*" />
+        <parameter name="version" value="12"/>
+        <parameter name="platform" value="Android"/>
+        <parameter name="device" value="Galaxy.*"/>
         <classes>
-            <class name="AndroidApp" />
+            <class name="AndroidApp"/>
         </classes>
     </test>
 </suite>
