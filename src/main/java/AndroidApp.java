@@ -37,6 +37,8 @@ public class AndroidApp {
             capabilities.setCapability("visual", true);
             capabilities.setCapability("devicelog", true);
             capabilities.setCapability("autoGrantPermissions", true);
+            String[] Tags = new String[] { "Feature", "Prashant"};
+            capabilities.setCapability("tags", Tags);
 
             //capabilities.setCapability("geoLocation", "HK");
 
